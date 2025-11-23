@@ -37,7 +37,7 @@ Users can authenticate, then create, view, update, delete, and complete **only t
 
 ### 1) Clone repository
 ```bash
-git clone <YOUR_GITHUB_REPO_URL>
+git clone <https://github.com/Skaveza/todo-app-laravel.gitL>
 cd todo-app
 ```
 ### 2) Install dependencies
