@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-layouts.app>
     <x-slot name="header">
         <h2 class="font-semibold text-xl">My Todos</h2>
     </x-slot>
@@ -78,4 +78,4 @@
             @endforelse
         </ul>
     </div>
-</x-app-layout>
+</x-layouts.app>

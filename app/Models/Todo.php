@@ -2,49 +2,29 @@
 
 namespace App\Models;
 
-use App\Models\Todo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Str;
-use Laravel\Fortify\TwoFactorAuthenticatable;
+use Illuminate\Database\Eloquent\Model;
 
-class User extends Authenticatable
+class Todo extends Model
 {
-    use HasFactory, Notifiable, TwoFactorAuthenticatable;
+    use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
+        'title',
+        'description',
+        'due_date',
+        'is_completed',
+        'completed_at',
     ];
 
-    protected $hidden = [
-        'password',
-        'two_factor_secret',
-        'two_factor_recovery_codes',
-        'remember_token',
+    protected $casts = [
+        'due_date' => 'date',
+        'is_completed' => 'boolean',
+        'completed_at' => 'datetime',
     ];
 
-    protected function casts(): array
+    public function user()
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
-    }
-
-    public function initials(): string
-    {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->take(2)
-            ->map(fn ($word) => Str::substr($word, 0, 1))
-            ->implode('');
-    }
-
-    public function todos()
-    {
-        return $this->hasMany(Todo::class);
+        return $this->belongsTo(User::class);
     }
 }
